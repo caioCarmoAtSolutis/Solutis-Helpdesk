@@ -10,3 +10,6 @@
 [submodule "Solutis-Helpdesk-Notification-Service"]
 	path = Solutis-Helpdesk-Notification-Service
 	url = https://github.com/caioCarmoAtSolutis/Solutis-Helpdesk-Notification-Service.git
+[submodule "Eureka-Server"]
+	path = Eureka-Server
+	url = https://github.com/caioCarmoAtSolutis/Eureka-Server.git
