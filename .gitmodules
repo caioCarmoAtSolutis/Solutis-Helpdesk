@@ -1,0 +1,12 @@
+[submodule "Solutis-Helpdesk-Gateway"]
+	path = Solutis-Helpdesk-Gateway
+	url = https://github.com/caioCarmoAtSolutis/Solutis-Helpdesk-Gateway.git
+[submodule "Solutis-Helpdesk-User-Service"]
+	path = Solutis-Helpdesk-User-Service
+	url = https://github.com/caioCarmoAtSolutis/Solutis-Helpdesk-User-Service.git
+[submodule "Solutis-Helpdesk-Ticket-Service"]
+	path = Solutis-Helpdesk-Ticket-Service
+	url = https://github.com/caioCarmoAtSolutis/Solutis-Helpdesk-Ticket-Service.git
+[submodule "Solutis-Helpdesk-Notification-Service"]
+	path = Solutis-Helpdesk-Notification-Service
+	url = https://github.com/caioCarmoAtSolutis/Solutis-Helpdesk-Notification-Service.git
