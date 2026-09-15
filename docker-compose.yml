@@ -43,7 +43,7 @@ services:
       POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
       POSTGRES_USER: "${POSTGRES_USER}"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_STOCK_DB}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${USER_DB}"]
       interval: 10s
       timeout: 10s
       retries: 2
@@ -60,7 +60,7 @@ services:
       POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
       POSTGRES_USER: "${POSTGRES_USER}"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_STOCK_DB}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${TICKET_DB}"]
       interval: 10s
       timeout: 10s
       retries: 2
@@ -77,7 +77,7 @@ services:
       POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
       POSTGRES_USER: "${POSTGRES_USER}"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_STOCK_DB}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${NOTIFICATION_DB}"]
       interval: 10s
       timeout: 10s
       retries: 2
@@ -104,7 +104,7 @@ configs:
 
 volumes:
   user_db_volume:
-  notification_db_volume:
+  ticket_db_volume:
   notification_db_data:
   rabbitmq-lib:
   rabbitmq-log:
