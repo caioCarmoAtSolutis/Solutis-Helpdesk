@@ -1,0 +1,156 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: user-service-endpoints
+meta:
+  id: wrk_8358912531c6460cad6b9223e93e9006
+  created: 1789580823670
+  modified: 1789580823670
+  description: ""
+collection:
+  - url: http://localhost:8080/users
+    name: Get Users
+    meta:
+      id: req_7ba344eb4dd04f56b0781def7731c374
+      created: 1789580830087
+      modified: 1789583711119
+      isPrivate: false
+      description: ""
+      sortKey: -1789580830087
+    method: GET
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/users
+    name: Create User
+    meta:
+      id: req_eb43d75ac2f9423d9695aebb8c675358
+      created: 1789581364692
+      modified: 1789584649910
+      isPrivate: false
+      description: ""
+      sortKey: -1789581364692
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "tester",
+        	"email": "tester.t@gmail.com",
+        	"role": {
+        		"role": "CLIENT"
+        	}
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/users/08d395be-515a-4be8-a4fc-4294903dcb4e
+    name: Get User
+    meta:
+      id: req_511522c168e949bcbf568561cbf45e73
+      created: 1789583281612
+      modified: 1789583537614
+      isPrivate: false
+      description: ""
+      sortKey: -1789583281612
+    method: GET
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/users/08d395be-515a-4be8-a4fc-4294903dcb4e/deactivate
+    name: Deactivate User
+    meta:
+      id: req_3c3281946c484194a7a6f0def553e23a
+      created: 1789583321002
+      modified: 1789583383415
+      isPrivate: false
+      description: ""
+      sortKey: -1789583321002
+    method: POST
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/users/08d395be-515a-4be8-a4fc-4294903dcb4e/activate
+    name: Activate User
+    meta:
+      id: req_d03b5815641241d6b56f0d48aafc6b1a
+      created: 1789583348652
+      modified: 1789583553812
+      isPrivate: false
+      description: ""
+      sortKey: -1789583348652
+    method: POST
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8080/users/08d395be-515a-4be8-a4fc-4294903dcb4e
+    name: Update User
+    meta:
+      id: req_e6fb945ecac340eeab5eb2354be2328b
+      created: 1789583516026
+      modified: 1789583639578
+      isPrivate: false
+      description: ""
+      sortKey: -1789583516026
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "Caio Viana",
+        	"email": "caio.viana@example.com",
+        	"role": {
+        		"role": "TECHNICIAN"
+        	}
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_ce4165486d2671420c4a16a32fb82e2432054b06
+    created: 1789580823710
+    modified: 1789580823710
+environments:
+  name: Base Environment
+  meta:
+    id: env_ce4165486d2671420c4a16a32fb82e2432054b06
+    created: 1789580823707
+    modified: 1789580823707
+    isPrivate: false
