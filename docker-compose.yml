@@ -34,6 +34,7 @@ services:
       POSTGRES_PASSWORD: postgres
       USER_DATABASE_URL: jdbc:postgresql://user-db:5432/user_service_database
       USER_DATABASE_TEST_URL: jdbc:postgresql://user-db:5432/user_service_database_test
+      EUREKA_SERVER_URL: http://eureka-server:8761/eureka
     ports:
      - 8080:8080
     depends_on:
