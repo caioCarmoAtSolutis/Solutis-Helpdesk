@@ -4,32 +4,45 @@ services:
       context: ./Eureka-Server
     container_name: eureka-server
     environment:
-      EUREKA_SERVER_URL: "${EUREKA_SERVER_URL}"
+      EUREKA_SERVER_URL: http://localhost:8761/eureka
     ports:
      - 8761:8761
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://localhost:8761/ || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
   gateway:
     build: 
       context: ./Solutis-Helpdesk-Gateway
     container_name: gateway
     environment:
-      EUREKA_SERVER_URL: "${EUREKA_SERVER_SERVICE_URL}"
+      EUREKA_SERVER_URL: http://eureka-server:8761/eureka
     ports:
      - 9000:9000
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+        restart: true
 
-#  stock-service-api:
-#    build: 
-#      context: ./TidyUp-Stock-Service
-#    container_name: stock-service-api
-#    environment:
-#      POSTGRES_USER: "${POSTGRES_USER}"
-#      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
-#      STOCK_DATABASE_URL_BUILD: "${STOCK_DATABASE_URL_BUILD}"
-#    ports:
-#     - 8081:8080
-#    depends_on:
-#      stock-service-database:
-#        condition: service_healthy
-#        restart: true
+  user-service-api:
+    build: 
+      context: ./Solutis-Helpdesk-User-Service
+    container_name: user-service-api
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      USER_DATABASE_URL: jdbc:postgresql://user-db:5432/user_service_database
+      USER_DATABASE_TEST_URL: jdbc:postgresql://user-db:5432/user_service_database_test
+    ports:
+     - 8080:8080
+    depends_on:
+      user-db:
+        condition: service_healthy
+        restart: true
+      eureka-server:
+        condition: service_healthy
+        restart: true
 
   user-db:
     image: postgres:18-bookworm
@@ -40,13 +53,13 @@ services:
       - ./init-user-db:/docker-entrypoint-initdb.d
       - user_db_volume:/var/lib/postgresql/18
     environment:
-      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
-      POSTGRES_USER: "${POSTGRES_USER}"
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${USER_DB}"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d user_service_database"]
       interval: 10s
       timeout: 10s
-      retries: 2
+      retries: 5
 
   ticket-db:
     image: postgres:18-bookworm
@@ -57,13 +70,13 @@ services:
       - ./init-ticket-db:/docker-entrypoint-initdb.d
       - ticket_db_volume:/var/lib/postgresql/18
     environment:
-      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
-      POSTGRES_USER: "${POSTGRES_USER}"
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${TICKET_DB}"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d ticket_service_database"]
       interval: 10s
       timeout: 10s
-      retries: 2
+      retries: 5
 
   notification-db:
     image: postgres:18-bookworm
@@ -74,13 +87,13 @@ services:
       - ./init-notification-db:/docker-entrypoint-initdb.d
       - notification_db_volume:/var/lib/postgresql/18
     environment:
-      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
-      POSTGRES_USER: "${POSTGRES_USER}"
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${NOTIFICATION_DB}"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d notification_service_database"]
       interval: 10s
       timeout: 10s
-      retries: 2
+      retries: 5
 
   rabbitmq:
     image: rabbitmq:4.3
@@ -89,8 +102,8 @@ services:
      - 5672:5672
      - 15672:15672
     environment:
-      RABBITMQ_DEFAULT_USER: "${RABBITMQ_USER}"
-      RABBITMQ_DEFAULT_PASS: "${RABBITMQ_PASS}"
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
     configs:
       - source: rabbitmq-plugins
         target: /etc/rabbitmq/enabled_plugins
