@@ -1,1 +1,2 @@
 CREATE DATABASE ticket_service_database;
+CREATE DATABASE ticket_service_database_test;

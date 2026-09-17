@@ -1,1 +1,2 @@
 CREATE DATABASE notification_service_database;
+CREATE DATABASE notification_service_database_test;

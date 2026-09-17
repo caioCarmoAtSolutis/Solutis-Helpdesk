@@ -1,1 +1,2 @@
 CREATE DATABASE user_service_database;
+CREATE DATABASE user_service_database_test;
