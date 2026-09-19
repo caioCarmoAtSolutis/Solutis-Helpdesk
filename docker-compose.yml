@@ -26,7 +26,7 @@ services:
         condition: service_healthy
         restart: true
     healthcheck:
-      test: ["CMD-SHELL", "wget -q --spider http://localhost:9000/ || exit 1"]
+      test: ["CMD-SHELL", "wget -q --spider http://localhost:9000/actuator/health || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -148,7 +148,7 @@ services:
       - rabbitmq-lib:/var/lib/rabbitmq/
       - rabbitmq-log:/var/log/rabbitmq
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5672"]
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
       interval: 10s
       timeout: 10s
       retries: 5
