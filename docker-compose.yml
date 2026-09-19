@@ -25,6 +25,11 @@ services:
       eureka-server:
         condition: service_healthy
         restart: true
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://localhost:9000/ || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   user-service-api:
     build: 
@@ -45,6 +50,9 @@ services:
       eureka-server:
         condition: service_healthy
         restart: true
+      gateway:
+        condition: service_healthy
+        restart: true
 
   ticket-service-api:
     build: 
@@ -56,13 +64,20 @@ services:
       TICKET_DATABASE_URL: jdbc:postgresql://ticket-db:5432/ticket_service_database
       TICKET_DATABASE_TEST_URL: jdbc:postgresql://ticket-db:5432/ticket_service_database_test
       EUREKA_SERVER_URL: http://eureka-server:8761/eureka/
+      USER_SERVICE_URL: http://gateway:9000/user-service/
     ports:
      - 8081:8081
     depends_on:
       ticket-db:
         condition: service_healthy
         restart: true
+      rabbitmq:
+        condition: service_healthy
+        restart: true
       eureka-server:
+        condition: service_healthy
+        restart: true
+      gateway:
         condition: service_healthy
         restart: true
 
@@ -132,6 +147,11 @@ services:
     volumes:
       - rabbitmq-lib:/var/lib/rabbitmq/
       - rabbitmq-log:/var/log/rabbitmq
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5672"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
 
 configs:
   rabbitmq-plugins:
