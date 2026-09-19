@@ -12,6 +12,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
   gateway:
     build: 
       context: ./Solutis-Helpdesk-Gateway
@@ -39,6 +40,26 @@ services:
      - 8080:8080
     depends_on:
       user-db:
+        condition: service_healthy
+        restart: true
+      eureka-server:
+        condition: service_healthy
+        restart: true
+
+  ticket-service-api:
+    build: 
+      context: ./Solutis-Helpdesk-Ticket-Service
+    container_name: ticket-service-api
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      TICKET_DATABASE_URL: jdbc:postgresql://ticket-db:5432/ticket_service_database
+      TICKET_DATABASE_TEST_URL: jdbc:postgresql://ticket-db:5432/ticket_service_database_test
+      EUREKA_SERVER_URL: http://eureka-server:8761/eureka/
+    ports:
+     - 8081:8081
+    depends_on:
+      ticket-db:
         condition: service_healthy
         restart: true
       eureka-server:
