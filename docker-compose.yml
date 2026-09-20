@@ -69,10 +69,43 @@ services:
       RABBITMQ_DEFAULT_USER: admin
       RABBITMQ_HOST: rabbitmq
       RABBITMQ_PORT: 5672
+      TICKET_CREATED_ROUTING_KEY: ticket.created
+      TICKET_ASSIGNED_ROUTING_KEY: ticket.assigned
+      TICKET_STATUS_CHANGED_ROUTING_KEY: ticket.status-changed
     ports:
      - 8081:8081
     depends_on:
       ticket-db:
+        condition: service_healthy
+        restart: true
+      rabbitmq:
+        condition: service_healthy
+        restart: true
+      eureka-server:
+        condition: service_healthy
+        restart: true
+      gateway:
+        condition: service_healthy
+        restart: true
+
+  notification-service-api:
+    build: 
+      context: ./Solutis-Helpdesk-Notification-Service
+    container_name: notification-service-api
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      NOTIFICATION_DATABASE_URL: jdbc:postgresql://notification-db:5432/notification_service_database
+      NOTIFICATION_DATABASE_TEST_URL: jdbc:postgresql://notification-db:5432/notification_service_database_test
+      EUREKA_SERVER_URL: http://eureka-server:8761/eureka/
+      RABBITMQ_DEFAULT_PASS: admin
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+    ports:
+     - 8082:8082
+    depends_on:
+      notification-db:
         condition: service_healthy
         restart: true
       rabbitmq:

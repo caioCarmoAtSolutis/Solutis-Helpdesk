@@ -1,0 +1,111 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: ticket-service-endpoints
+meta:
+  id: wrk_6b2e2459f6394a6e8d981b03ff23cc24
+  created: 1789944027332
+  modified: 1789944027332
+  description: ""
+collection:
+  - url: http://localhost:9000/ticket-service/tickets
+    name: Create ticket
+    meta:
+      id: req_1db16c18a50f4193af043787502ac40c
+      created: 1789944034420
+      modified: 1789944637641
+      isPrivate: false
+      description: ""
+      sortKey: -1789944034420
+    method: POST
+    body:
+      mimeType: application/json
+      text: >2-
+          {
+            "customerId": "1c2d3e4f-5a6b-7c8d-9e0f-1a2b3c4d5e6f",
+            "title": "windows won't work anymore",
+            "description": "Tried to start my laptop as usual and an ugly error screen appears in from of me every time.",
+            "priority": {
+              "priority": "CRITICAL"
+            },
+            "category": {
+              "category": "HARDWARE"
+            }
+          }
+    headers:
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:9000/ticket-service/tickets/3971cd52-52a6-4818-9aeb-00cbf0fefaae/technician
+    name: " Assign technician"
+    meta:
+      id: req_85b0c1678ed94a9e9776a568a70d4dbc
+      created: 1789944608424
+      modified: 1789944964362
+      isPrivate: false
+      description: ""
+      sortKey: -1789944608424
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"technicianId": "7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:9000/ticket-service/tickets/3971cd52-52a6-4818-9aeb-00cbf0fefaae/status
+    name: Change status
+    meta:
+      id: req_dbaed3443bfc4e8f9a1227d261765e30
+      created: 1789944941397
+      modified: 1789945107293
+      isPrivate: false
+      description: ""
+      sortKey: -1789944941397
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"status": "IN_PROGRESS"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_32a4f00821396232cfdda184f49b3a729cee7867
+    created: 1789944027355
+    modified: 1789944027355
+environments:
+  name: Base Environment
+  meta:
+    id: env_32a4f00821396232cfdda184f49b3a729cee7867
+    created: 1789944027350
+    modified: 1789944027350
+    isPrivate: false
