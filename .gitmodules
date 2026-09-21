@@ -13,3 +13,6 @@
 [submodule "Eureka-Server"]
 	path = Eureka-Server
 	url = https://github.com/caioCarmoAtSolutis/Eureka-Server.git
+[submodule "Solutis-Helpdesk-Frontend"]
+	path = Solutis-Helpdesk-Frontend
+	url = https://github.com/caioCarmoAtSolutis/Solutis-Helpdesk-Frontend.git
