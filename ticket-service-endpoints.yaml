@@ -12,51 +12,24 @@ collection:
     meta:
       id: req_1db16c18a50f4193af043787502ac40c
       created: 1789944034420
-      modified: 1789944637641
+      modified: 1790001767409
       isPrivate: false
       description: ""
       sortKey: -1789944034420
     method: POST
     body:
       mimeType: application/json
-      text: >2-
-          {
-            "customerId": "1c2d3e4f-5a6b-7c8d-9e0f-1a2b3c4d5e6f",
-            "title": "windows won't work anymore",
-            "description": "Tried to start my laptop as usual and an ugly error screen appears in from of me every time.",
-            "priority": {
-              "priority": "CRITICAL"
-            },
-            "category": {
-              "category": "HARDWARE"
-            }
-          }
-    headers:
-      - name: Content-Type
-        value: application/json
-    settings:
-      renderRequestBody: true
-      encodeUrl: true
-      followRedirects: global
-      cookies:
-        send: true
-        store: true
-      rebuildPath: true
-  - url: http://localhost:9000/ticket-service/tickets/52325751-a9c5-4070-9843-97d46c136352/technician
-    name: " Assign technician"
-    meta:
-      id: req_85b0c1678ed94a9e9776a568a70d4dbc
-      created: 1789944608424
-      modified: 1789955790921
-      isPrivate: false
-      description: ""
-      sortKey: -1789944608424
-    method: PATCH
-    body:
-      mimeType: application/json
-      text: |-
+      text: >-
         {
-        	"technicianId": "7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d"
+          "customerId": "b5a4f3e2-d1c0-9b8a-7f6e-5d4c3b2a10fe",
+          "title": "Notebook needs a new better power adapter",
+          "description": "I need a better power charger for my laptop, because the one i got is not powerfull enough to keep the laptop charged when i'm using the laptop for demanding tasks like 3d modeling.",
+          "priority": {
+            "priority": "CRITICAL"
+          },
+          "category": {
+            "category": "HARDWARE"
+          }
         }
     headers:
       - name: Content-Type
@@ -69,12 +42,39 @@ collection:
         send: true
         store: true
       rebuildPath: true
-  - url: http://localhost:9000/ticket-service/tickets/52325751-a9c5-4070-9843-97d46c136352/status
+  - url: http://localhost:9000/ticket-service/tickets/13e377d2-be87-4541-b72b-70407c7dd7e4/technician
+    name: " Assign technician"
+    meta:
+      id: req_85b0c1678ed94a9e9776a568a70d4dbc
+      created: 1789944608424
+      modified: 1790001586585
+      isPrivate: false
+      description: ""
+      sortKey: -1789944608424
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"technicianId": "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:9000/ticket-service/tickets/13e377d2-be87-4541-b72b-70407c7dd7e4/status
     name: Change status
     meta:
       id: req_dbaed3443bfc4e8f9a1227d261765e30
       created: 1789944941397
-      modified: 1789955934381
+      modified: 1790001592320
       isPrivate: false
       description: ""
       sortKey: -1789944941397
@@ -106,6 +106,60 @@ collection:
       description: ""
       sortKey: -1789955900381
     method: POST
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:9000/ticket-service/tickets?size=30
+    name: Get tickets
+    meta:
+      id: req_8785072df08444f8954860e05ec54d0e
+      created: 1790001760361
+      modified: 1790001960085
+      isPrivate: false
+      description: ""
+      sortKey: -1790001760361
+    method: GET
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:9000/ticket-service/tickets/customer/b5a4f3e2-d1c0-9b8a-7f6e-5d4c3b2a10fe
+    name: Get tickets with customer id
+    meta:
+      id: req_f80728183d5b4895b41d1257b2b855d5
+      created: 1790001807812
+      modified: 1790002009820
+      isPrivate: false
+      description: ""
+      sortKey: -1790001807812
+    method: GET
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:9000/ticket-service/tickets/ea836465-b2b8-4b4e-9357-b090428fe91b
+    name: Get ticket
+    meta:
+      id: req_f096d84731354c2d985f68a5ff83adfd
+      created: 1790001947269
+      modified: 1790002030599
+      isPrivate: false
+      description: ""
+      sortKey: -1790001947269
+    method: GET
     settings:
       renderRequestBody: true
       encodeUrl: true

@@ -8,11 +8,11 @@ meta:
   description: ""
 collection:
   - url: http://localhost:9000/notification-service/notifications
-    name: List notifications
+    name: Get notifications
     meta:
       id: req_cf3401606f094030aa6f442689483088
       created: 1789954023935
-      modified: 1789956104540
+      modified: 1789998556947
       isPrivate: false
       description: ""
       sortKey: -1789954023935
@@ -30,10 +30,28 @@ collection:
     meta:
       id: req_5fec5a61c8cd4cddaeaa12718a1e8e13
       created: 1789956001554
-      modified: 1789956250403
+      modified: 1789998513457
       isPrivate: false
       description: ""
       sortKey: -1789956001554
+    method: GET
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:9000/notification-service/notifications/000c7d09-5cc8-44c7-920e-55094dc8963f
+    name: Get notification by id
+    meta:
+      id: req_43c89098db824a9ab9785764d22b962e
+      created: 1789998527020
+      modified: 1789998573964
+      isPrivate: false
+      description: ""
+      sortKey: -1789998527020
     method: GET
     settings:
       renderRequestBody: true
