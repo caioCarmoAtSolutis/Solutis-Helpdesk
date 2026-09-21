@@ -1,0 +1,58 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: notification-service-endpoints
+meta:
+  id: wrk_787507f043bc421c952a274dcda91cd0
+  created: 1789954019984
+  modified: 1789954019984
+  description: ""
+collection:
+  - url: http://localhost:9000/notification-service/notifications
+    name: List notifications
+    meta:
+      id: req_cf3401606f094030aa6f442689483088
+      created: 1789954023935
+      modified: 1789956104540
+      isPrivate: false
+      description: ""
+      sortKey: -1789954023935
+    method: GET
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:9000/notification-service/notifications/ticket/52325751-a9c5-4070-9843-97d46c136352
+    name: Get notifications with ticketId
+    meta:
+      id: req_5fec5a61c8cd4cddaeaa12718a1e8e13
+      created: 1789956001554
+      modified: 1789956250403
+      isPrivate: false
+      description: ""
+      sortKey: -1789956001554
+    method: GET
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_64dc8bfd3d727d49ecaab14c8ec40830ddd24d33
+    created: 1789954020040
+    modified: 1789954020040
+environments:
+  name: Base Environment
+  meta:
+    id: env_64dc8bfd3d727d49ecaab14c8ec40830ddd24d33
+    created: 1789954020034
+    modified: 1789954020034
+    isPrivate: false

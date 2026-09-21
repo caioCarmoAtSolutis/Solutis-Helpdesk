@@ -42,12 +42,12 @@ collection:
         send: true
         store: true
       rebuildPath: true
-  - url: http://localhost:9000/ticket-service/tickets/3971cd52-52a6-4818-9aeb-00cbf0fefaae/technician
+  - url: http://localhost:9000/ticket-service/tickets/52325751-a9c5-4070-9843-97d46c136352/technician
     name: " Assign technician"
     meta:
       id: req_85b0c1678ed94a9e9776a568a70d4dbc
       created: 1789944608424
-      modified: 1789944964362
+      modified: 1789955790921
       isPrivate: false
       description: ""
       sortKey: -1789944608424
@@ -69,12 +69,12 @@ collection:
         send: true
         store: true
       rebuildPath: true
-  - url: http://localhost:9000/ticket-service/tickets/3971cd52-52a6-4818-9aeb-00cbf0fefaae/status
+  - url: http://localhost:9000/ticket-service/tickets/52325751-a9c5-4070-9843-97d46c136352/status
     name: Change status
     meta:
       id: req_dbaed3443bfc4e8f9a1227d261765e30
       created: 1789944941397
-      modified: 1789945107293
+      modified: 1789955934381
       isPrivate: false
       description: ""
       sortKey: -1789944941397
@@ -88,6 +88,24 @@ collection:
     headers:
       - name: Content-Type
         value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:9000/ticket-service/tickets/52325751-a9c5-4070-9843-97d46c136352/close
+    name: Close ticket
+    meta:
+      id: req_ddff0b2794474c3ca9497a0c1ceb1c1f
+      created: 1789955900381
+      modified: 1789955965463
+      isPrivate: false
+      description: ""
+      sortKey: -1789955900381
+    method: POST
     settings:
       renderRequestBody: true
       encodeUrl: true
