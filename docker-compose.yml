@@ -102,6 +102,9 @@ services:
       RABBITMQ_DEFAULT_USER: admin
       RABBITMQ_HOST: rabbitmq
       RABBITMQ_PORT: 5672
+      TICKET_CREATED_ROUTING_KEY: ticket.created
+      TICKET_ASSIGNED_ROUTING_KEY: ticket.assigned
+      TICKET_STATUS_CHANGED_ROUTING_KEY: ticket.status-changed
     ports:
      - 8082:8082
     depends_on:
