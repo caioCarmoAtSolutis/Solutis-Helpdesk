@@ -12,23 +12,23 @@ collection:
     meta:
       id: req_1db16c18a50f4193af043787502ac40c
       created: 1789944034420
-      modified: 1790001767409
+      modified: 1790021980566
       isPrivate: false
       description: ""
       sortKey: -1789944034420
     method: POST
     body:
       mimeType: application/json
-      text: >-
+      text: |-
         {
           "customerId": "b5a4f3e2-d1c0-9b8a-7f6e-5d4c3b2a10fe",
-          "title": "Notebook needs a new better power adapter",
-          "description": "I need a better power charger for my laptop, because the one i got is not powerfull enough to keep the laptop charged when i'm using the laptop for demanding tasks like 3d modeling.",
+          "title": "Email password change",
+          "description": "I forgot my email password again, sorry guys!",
           "priority": {
-            "priority": "CRITICAL"
+            "priority": "LOW"
           },
           "category": {
-            "category": "HARDWARE"
+            "category": "SOFTWARE"
           }
         }
     headers:
