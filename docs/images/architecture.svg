@@ -1,0 +1,249 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 820" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0f19" />
+      <stop offset="100%" stop-color="#111827" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <linearGradient id="accentBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+    <linearGradient id="accentPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c084fc" />
+      <stop offset="100%" stop-color="#9333ea" />
+    </linearGradient>
+    <linearGradient id="accentGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4ade80" />
+      <stop offset="100%" stop-color="#16a34a" />
+    </linearGradient>
+    <linearGradient id="accentOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fb923c" />
+      <stop offset="100%" stop-color="#ea580c" />
+    </linearGradient>
+    <linearGradient id="accentAmber" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fcd34d" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+    
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="0.5" />
+    </filter>
+
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#64748b" />
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38bdf8" />
+    </marker>
+    <marker id="arrowOrange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#fb923c" />
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#4ade80" />
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#bg)" />
+
+  <!-- Subtitle and Title -->
+  <text x="640" y="45" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="26" font-weight="700" fill="#f8fafc" letter-spacing="1">ARQUITETURA DE MICROSSERVIÇOS — SOLUTIS HELPDESK</text>
+  <text x="640" y="72" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#94a3b8">Topologia distribuída orientada a serviços com mensageria assíncrona, discovery e persistência isolada</text>
+
+  <!-- Section 1: Client & Presentation Layer -->
+  <g transform="translate(60, 110)">
+    <rect width="240" height="240" rx="16" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" filter="url(#shadow)" />
+    <rect x="15" y="15" width="210" height="34" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1" />
+    <text x="120" y="37" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#38bdf8">CLIENT LAYER</text>
+
+    <!-- React Frontend -->
+    <rect x="20" y="65" width="200" height="70" rx="10" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5" />
+    <text x="120" y="90" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#f1f5f9">Frontend SPA</text>
+    <text x="120" y="108" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#94a3b8">React 19 • TS • Vite • Bootstrap</text>
+    <text x="120" y="124" text-anchor="middle" font-family="monospace" font-size="11" fill="#38bdf8">Porta 5173 / Nginx :80</text>
+
+    <!-- Insomnia / Browser -->
+    <rect x="20" y="150" width="200" height="75" rx="10" fill="#0f172a" stroke="#64748b" stroke-width="1" />
+    <text x="120" y="175" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#f1f5f9">Clientes REST / API</text>
+    <text x="120" y="193" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#94a3b8">Navegador Web / Insomnia</text>
+    <text x="120" y="210" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#64748b">user / ticket / notif specs</text>
+  </g>
+
+  <!-- Section 2: Gateway & Discovery Layer -->
+  <g transform="translate(360, 110)">
+    <rect width="250" height="240" rx="16" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" filter="url(#shadow)" />
+    <rect x="15" y="15" width="220" height="34" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1" />
+    <text x="125" y="37" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#c084fc">EDGE &amp; DISCOVERY</text>
+
+    <!-- Spring Cloud Gateway -->
+    <rect x="20" y="65" width="210" height="70" rx="10" fill="#0f172a" stroke="#c084fc" stroke-width="1.5" />
+    <text x="125" y="90" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#f1f5f9">Spring Cloud Gateway</text>
+    <text x="125" y="108" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#94a3b8">WebFlux • Reverse Proxy • CORS</text>
+    <text x="125" y="124" text-anchor="middle" font-family="monospace" font-size="11" fill="#c084fc">Porta 9000</text>
+
+    <!-- Eureka Server -->
+    <rect x="20" y="150" width="210" height="75" rx="10" fill="#0f172a" stroke="#a855f7" stroke-width="1" />
+    <text x="125" y="175" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#f1f5f9">Eureka Server</text>
+    <text x="125" y="193" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#94a3b8">Service Registry &amp; Discovery</text>
+    <text x="125" y="210" text-anchor="middle" font-family="monospace" font-size="11" fill="#a855f7">Porta 8761</text>
+  </g>
+
+  <!-- Section 3: Microservices Core -->
+  <g transform="translate(680, 110)">
+    <rect width="540" height="400" rx="16" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" filter="url(#shadow)" />
+    <rect x="20" y="15" width="500" height="34" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1" />
+    <text x="270" y="37" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#4ade80">MICROSERVICES CORE TIER (SPRING BOOT 4.1.1 / JAVA 21)</text>
+
+    <!-- User Service Card -->
+    <g transform="translate(20, 65)">
+      <rect width="150" height="150" rx="12" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5" />
+      <rect x="10" y="10" width="130" height="22" rx="6" fill="#0369a1" />
+      <text x="75" y="25" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#ffffff">USER SERVICE</text>
+      <text x="75" y="55" text-anchor="middle" font-family="monospace" font-size="11" fill="#38bdf8">Porta 8080</text>
+      <text x="75" y="75" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#cbd5e1">Gestão de Usuários</text>
+      <text x="75" y="90" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#cbd5e1">Perfis (Roles) e Status</text>
+      <text x="75" y="108" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#94a3b8">Spring Data JPA</text>
+      <text x="75" y="122" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#94a3b8">Flyway Migrations</text>
+      <text x="75" y="138" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#64748b">OpenAPI / Swagger</text>
+    </g>
+
+    <!-- Ticket Service Card -->
+    <g transform="translate(195, 65)">
+      <rect width="150" height="150" rx="12" fill="#0f172a" stroke="#4ade80" stroke-width="1.5" />
+      <rect x="10" y="10" width="130" height="22" rx="6" fill="#15803d" />
+      <text x="75" y="25" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#ffffff">TICKET SERVICE</text>
+      <text x="75" y="55" text-anchor="middle" font-family="monospace" font-size="11" fill="#4ade80">Porta 8081</text>
+      <text x="75" y="75" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#cbd5e1">Chamados &amp; Ciclo</text>
+      <text x="75" y="90" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#cbd5e1">Atribuição Técnico</text>
+      <text x="75" y="108" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#94a3b8">OpenFeign Client</text>
+      <text x="75" y="122" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#94a3b8">RabbitMQ Producer</text>
+      <text x="75" y="138" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#64748b">Spring Data JPA</text>
+    </g>
+
+    <!-- Notification Service Card -->
+    <g transform="translate(370, 65)">
+      <rect width="150" height="150" rx="12" fill="#0f172a" stroke="#fb923c" stroke-width="1.5" />
+      <rect x="10" y="10" width="130" height="22" rx="6" fill="#c2410c" />
+      <text x="75" y="25" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#ffffff">NOTIFICATION</text>
+      <text x="75" y="55" text-anchor="middle" font-family="monospace" font-size="11" fill="#fb923c">Porta 8082</text>
+      <text x="75" y="75" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#cbd5e1">Event Consumer</text>
+      <text x="75" y="90" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#cbd5e1">Histórico Notificações</text>
+      <text x="75" y="108" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#94a3b8">RabbitListener</text>
+      <text x="75" y="122" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#94a3b8">Spring Data JPA</text>
+      <text x="75" y="138" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#64748b">Flyway Migrations</text>
+    </g>
+
+    <!-- RabbitMQ Broker Subcard -->
+    <g transform="translate(20, 235)">
+      <rect width="500" height="145" rx="12" fill="#0f172a" stroke="#ea580c" stroke-width="1.5" />
+      <text x="20" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#fb923c">RABBITMQ MESSAGE BROKER (4.3)</text>
+      <text x="480" y="28" text-anchor="end" font-family="monospace" font-size="11" fill="#94a3b8">AMQP :5672 • Admin :15672</text>
+      
+      <!-- Queues -->
+      <g transform="translate(15, 45)">
+        <rect width="145" height="85" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="1" />
+        <text x="72" y="24" text-anchor="middle" font-family="monospace" font-size="11" font-weight="700" fill="#fdba74">ticket.created</text>
+        <text x="72" y="44" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#cbd5e1">Novo chamado criado</text>
+        <text x="72" y="60" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#94a3b8">Payload: DetailedTicket</text>
+        <text x="72" y="74" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#4ade80">Durable Queue</text>
+      </g>
+
+      <g transform="translate(175, 45)">
+        <rect width="145" height="85" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="1" />
+        <text x="72" y="24" text-anchor="middle" font-family="monospace" font-size="11" font-weight="700" fill="#fdba74">ticket.assigned</text>
+        <text x="72" y="44" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#cbd5e1">Técnico atribuído</text>
+        <text x="72" y="60" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#94a3b8">Payload: DetailedTicket</text>
+        <text x="72" y="74" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#4ade80">Durable Queue</text>
+      </g>
+
+      <g transform="translate(335, 45)">
+        <rect width="150" height="85" rx="8" fill="#1e293b" stroke="#f97316" stroke-width="1" />
+        <text x="75" y="24" text-anchor="middle" font-family="monospace" font-size="11" font-weight="700" fill="#fdba74">ticket.status-changed</text>
+        <text x="75" y="44" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#cbd5e1">Status alterado / Fechado</text>
+        <text x="75" y="60" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#94a3b8">Payload: DetailedTicket</text>
+        <text x="75" y="74" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="8" fill="#4ade80">Durable Queue</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Section 4: Persistence Layer (Database per Service) -->
+  <g transform="translate(60, 545)">
+    <rect width="1160" height="235" rx="16" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" filter="url(#shadow)" />
+    <rect x="25" y="15" width="1110" height="34" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1" />
+    <text x="580" y="37" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#fcd34d">PERSISTENCE TIER — DATABASE-PER-SERVICE (POSTGRESQL 18)</text>
+
+    <!-- DB 1: User DB -->
+    <g transform="translate(45, 65)">
+      <rect width="330" height="145" rx="12" fill="#0f172a" stroke="#0284c7" stroke-width="1.5" />
+      <rect x="15" y="12" width="300" height="26" rx="6" fill="#0369a1" />
+      <text x="165" y="29" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#ffffff">user-db (Container :5432)</text>
+      
+      <text x="25" y="60" font-family="monospace" font-size="11" fill="#38bdf8">DATABASE: user_service_database</text>
+      <text x="25" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#cbd5e1">• Tabela ROLES (ID, ROLE)</text>
+      <text x="25" y="100" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#cbd5e1">• Tabela USERS (ID, EMAIL, NAME, ROLE_ID, ACTIVE...)</text>
+      <text x="25" y="122" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#94a3b8">Volume: user_db_volume • Migrations: Flyway</text>
+      <text x="25" y="140" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#64748b">Isolamento completo: Acesso exclusivo do User Service</text>
+    </g>
+
+    <!-- DB 2: Ticket DB -->
+    <g transform="translate(415, 65)">
+      <rect width="330" height="145" rx="12" fill="#0f172a" stroke="#16a34a" stroke-width="1.5" />
+      <rect x="15" y="12" width="300" height="26" rx="6" fill="#15803d" />
+      <text x="165" y="29" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#ffffff">ticket-db (Container :5433 -&gt; 5432)</text>
+      
+      <text x="25" y="60" font-family="monospace" font-size="11" fill="#4ade80">DATABASE: ticket_service_database</text>
+      <text x="25" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#cbd5e1">• PRIORITIES, TICKET_STATUS, CATEGORIES</text>
+      <text x="25" y="100" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#cbd5e1">• TICKETS (ID, CUSTOMER_ID, TECH_ID, STATUS...)</text>
+      <text x="25" y="122" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#94a3b8">Volume: ticket_db_volume • Migrations: Flyway</text>
+      <text x="25" y="140" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#64748b">Isolamento completo: Acesso exclusivo do Ticket Service</text>
+    </g>
+
+    <!-- DB 3: Notification DB -->
+    <g transform="translate(785, 65)">
+      <rect width="330" height="145" rx="12" fill="#0f172a" stroke="#ea580c" stroke-width="1.5" />
+      <rect x="15" y="12" width="300" height="26" rx="6" fill="#c2410c" />
+      <text x="165" y="29" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#ffffff">notification-db (Container :5434 -&gt; 5432)</text>
+      
+      <text x="25" y="60" font-family="monospace" font-size="11" fill="#fb923c">DATABASE: notification_service_database</text>
+      <text x="25" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#cbd5e1">• NOTIFICATIONS (ID, TICKET_ID, CUSTOMER_ID,</text>
+      <text x="25" y="100" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#cbd5e1">   TECHNICIAN_ID, MESSAGE, STATUS, CREATED_AT)</text>
+      <text x="25" y="122" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#94a3b8">Volume: notification_db_volume • Migrations: Flyway</text>
+      <text x="25" y="140" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#64748b">Histórico imutável de eventos processados</text>
+    </g>
+  </g>
+
+  <!-- Connectors & Arrows -->
+  <!-- Client to Gateway -->
+  <path d="M 300 210 L 360 210" fill="none" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrowBlue)" />
+  <text x="330" y="200" text-anchor="middle" font-family="monospace" font-size="9" fill="#38bdf8">REST</text>
+
+  <!-- Gateway to Eureka -->
+  <path d="M 485 180 L 485 240" fill="none" stroke="#c084fc" stroke-width="2" stroke-dasharray="4,4" />
+
+  <!-- Gateway to Microservices -->
+  <path d="M 610 210 C 640 210, 640 190, 700 190" fill="none" stroke="#c084fc" stroke-width="2" marker-end="url(#arrow)" />
+  <path d="M 610 210 C 640 210, 640 210, 875 210" fill="none" stroke="#c084fc" stroke-width="2" marker-end="url(#arrow)" />
+  <path d="M 610 210 C 640 210, 640 230, 1050 230" fill="none" stroke="#c084fc" stroke-width="2" marker-end="url(#arrow)" />
+  <text x="645" y="175" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#c084fc">Roteamento lb://</text>
+
+  <!-- Ticket Service to User Service (OpenFeign Sync) -->
+  <path d="M 875 220 C 850 240, 800 240, 775 220" fill="none" stroke="#fcd34d" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow)" />
+  <text x="825" y="250" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#fcd34d">OpenFeign (Valida Cliente/Técnico)</text>
+
+  <!-- Ticket Service to RabbitMQ -->
+  <path d="M 950 280 L 950 345" fill="none" stroke="#ea580c" stroke-width="2.5" marker-end="url(#arrowOrange)" />
+  <text x="960" y="320" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#fb923c">Publish Events</text>
+
+  <!-- RabbitMQ to Notification Service -->
+  <path d="M 1125 345 L 1125 280" fill="none" stroke="#4ade80" stroke-width="2.5" marker-end="url(#arrowGreen)" />
+  <text x="1135" y="320" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#4ade80">Consume Events</text>
+
+  <!-- Services to DBs -->
+  <path d="M 755 280 L 755 510 L 210 510 L 210 610" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#arrowBlue)" />
+  <path d="M 950 510 L 580 510 L 580 610" fill="none" stroke="#4ade80" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#arrowGreen)" />
+  <path d="M 1125 510 L 950 510 L 950 610" fill="none" stroke="#fb923c" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#arrowOrange)" />
+
+</svg>

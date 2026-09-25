@@ -121,6 +121,13 @@ services:
         condition: service_healthy
         restart: true
 
+  frontend-app:
+    build:
+      context: ./Solutis-Helpdesk-Frontend
+    container_name: frontend-app
+    ports:
+      - 5173:80
+
   user-db:
     image: postgres:18-bookworm
     container_name: user-db
