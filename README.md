@@ -72,29 +72,29 @@ A solução foi estruturada sob o paradigma de **Arquitetura Orientada a Micross
 ```mermaid
 flowchart TD
     subgraph Clients["Camada de Apresentação & Clientes"]
-        SPA["Frontend SPA\nReact 19 + TypeScript + Vite\nPorta :5173 / Nginx :80"]
-        API_CLIENTS["Clientes HTTP\nInsomnia / Postman / Browser"]
+        SPA["Frontend SPA<br/>React 19 + TypeScript + Vite<br/>Porta :5173 / Nginx :80"]
+        API_CLIENTS["Clientes HTTP<br/>Insomnia / Postman / Browser"]
     end
 
     subgraph Edge["Camada de Borda & Governança"]
-        GATEWAY["API Gateway\nSpring Cloud Gateway (WebFlux)\nPorta :9000"]
-        EUREKA["Service Discovery\nNetflix Eureka Server\nPorta :8761"]
+        GATEWAY["API Gateway<br/>Spring Cloud Gateway WebFlux<br/>Porta :9000"]
+        EUREKA["Service Discovery<br/>Netflix Eureka Server<br/>Porta :8761"]
     end
 
     subgraph Core["Microsserviços de Negócio"]
-        USER_SRV["User Service\nSpring Boot :8080"]
-        TICKET_SRV["Ticket Service\nSpring Boot :8081"]
-        NOTIF_SRV["Notification Service\nSpring Boot :8082"]
+        USER_SRV["User Service<br/>Spring Boot :8080"]
+        TICKET_SRV["Ticket Service<br/>Spring Boot :8081"]
+        NOTIF_SRV["Notification Service<br/>Spring Boot :8082"]
     end
 
     subgraph Broker["Mensageria Assíncrona"]
-        RABBIT["RabbitMQ 4.3 Message Broker\nAMQP :5672 | Management :15672\n• ticket.created\n• ticket.assigned\n• ticket.status-changed"]
+        RABBIT["RabbitMQ 4.3 Message Broker<br/>AMQP :5672 | Admin :15672"]
     end
 
-    subgraph Persistence["Persistência — Database per Service (PostgreSQL 18)"]
-        USER_DB[("user-db\nuser_service_database\nPorta :5432")]
-        TICKET_DB[("ticket-db\nticket_service_database\nPorta :5433")]
-        NOTIF_DB[("notification-db\nnotification_service_database\nPorta :5434")]
+    subgraph Persistence["Persistência — Database per Service PostgreSQL 18"]
+        USER_DB[("user-db<br/>user_service_database<br/>Porta :5432")]
+        TICKET_DB[("ticket-db<br/>ticket_service_database<br/>Porta :5433")]
+        NOTIF_DB[("notification-db<br/>notification_service_database<br/>Porta :5434")]
     end
 
     %% Conexões Clientes -> Gateway
@@ -103,19 +103,19 @@ flowchart TD
 
     %% Gateway & Eureka
     GATEWAY -.->|Consulta de Registro| EUREKA
-    USER_SRV -.->|Heartbeat / Registro| EUREKA
-    TICKET_SRV -.->|Heartbeat / Registro| EUREKA
-    NOTIF_SRV -.->|Heartbeat / Registro| EUREKA
+    USER_SRV -.->|Registro e Heartbeat| EUREKA
+    TICKET_SRV -.->|Registro e Heartbeat| EUREKA
+    NOTIF_SRV -.->|Registro e Heartbeat| EUREKA
 
     %% Roteamento Gateway
-    GATEWAY -->|lb://user-service| USER_SRV
-    GATEWAY -->|lb://ticket-service| TICKET_SRV
-    GATEWAY -->|lb://notification-service| NOTIF_SRV
+    GATEWAY -->|user-service| USER_SRV
+    GATEWAY -->|ticket-service| TICKET_SRV
+    GATEWAY -->|notification-service| NOTIF_SRV
 
     %% Comunicação entre Serviços
-    TICKET_SRV ==>|OpenFeign (Validação Síncrona)| USER_SRV
-    TICKET_SRV -->|Publica Eventos (RabbitTemplate)| RABBIT
-    RABBIT -->|Consome Eventos (@RabbitListener)| NOTIF_SRV
+    TICKET_SRV ==>|OpenFeign - Validação Síncrona| USER_SRV
+    TICKET_SRV -->|Publica ticket.created/assigned/status-changed| RABBIT
+    RABBIT -->|Consome Eventos AMQP| NOTIF_SRV
 
     %% Conexões com Bancos
     USER_SRV --- USER_DB
@@ -209,70 +209,62 @@ O diagrama abaixo ilustra o modelo relacional dos três bancos de dados independ
 
 ```mermaid
 erDiagram
-    %% USER SERVICE DATABASE
-    subgraph user_service_database
-        ROLES {
-            SERIAL id PK
-            VARCHAR(50) role UK "NOT NULL CHECK (~ '\\S')"
-        }
-        USERS {
-            UUID id PK
-            VARCHAR(100) email UK "NOT NULL CHECK (~ '\\S')"
-            VARCHAR(150) name "NOT NULL CHECK (~ '\\S')"
-            INT role_id FK "REFERENCES ROLES(id)"
-            BOOLEAN active "NOT NULL"
-            TIMESTAMP created_at "NOT NULL"
-        }
-        ROLES ||--o{ USERS : "possui"
-    end
+    ROLES ||--o{ USERS : "possui"
+    USERS {
+        uuid id PK
+        varchar email UK "E-mail unico nao vazio"
+        varchar name "Nome do usuario"
+        int role_id FK "Chave estrangeira para ROLES"
+        boolean active "Status ativo ou inativo"
+        timestamp created_at "Data de criacao"
+    }
+    ROLES {
+        serial id PK
+        varchar role UK "ADMIN, TECHNICIAN ou CLIENT"
+    }
 
-    %% TICKET SERVICE DATABASE
-    subgraph ticket_service_database
-        PRIORITIES {
-            SERIAL id PK
-            VARCHAR(50) priority UK "NOT NULL CHECK (~ '\\S')"
-        }
-        TICKET_STATUS {
-            SERIAL id PK
-            VARCHAR(50) status UK "NOT NULL CHECK (~ '\\S')"
-        }
-        CATEGORIES {
-            SERIAL id PK
-            VARCHAR(50) category UK "NOT NULL CHECK (~ '\\S')"
-        }
-        TICKETS {
-            UUID id PK
-            UUID customer_id "NOT NULL (Ref. Lógica USERS)"
-            UUID technician_id "Nullable (Ref. Lógica USERS)"
-            VARCHAR(50) title "NOT NULL"
-            VARCHAR(250) description "NOT NULL CHECK (~ '\\S')"
-            INT priority_id FK "REFERENCES PRIORITIES(id)"
-            INT status_id FK "REFERENCES TICKET_STATUS(id)"
-            INT category_id FK "REFERENCES CATEGORIES(id)"
-            TIMESTAMP created_at "NOT NULL"
-            TIMESTAMP updated_at "NOT NULL CHECK (updated_at >= created_at)"
-        }
-        PRIORITIES ||--o{ TICKETS : "classifica"
-        TICKET_STATUS ||--o{ TICKETS : "define estado"
-        CATEGORIES ||--o{ TICKETS : "agrupa"
-    end
+    PRIORITIES ||--o{ TICKETS : "classifica"
+    TICKET_STATUS ||--o{ TICKETS : "define estado"
+    CATEGORIES ||--o{ TICKETS : "agrupa"
 
-    %% NOTIFICATION SERVICE DATABASE
-    subgraph notification_service_database
-        NOTIFICATIONS {
-            UUID id PK
-            UUID ticket_id "NOT NULL"
-            UUID customer_id "NOT NULL"
-            UUID technician_id "Nullable"
-            VARCHAR(50) title "NOT NULL CHECK (~ '\\S')"
-            VARCHAR(250) description "NOT NULL CHECK (~ '\\S')"
-            VARCHAR(150) message "NOT NULL"
-            VARCHAR(50) priority "NOT NULL"
-            VARCHAR(50) status "NOT NULL"
-            VARCHAR(50) category "NOT NULL"
-            TIMESTAMP created_at "NOT NULL"
-        }
-    end
+    TICKETS {
+        uuid id PK
+        uuid customer_id "Ref logica a USERS"
+        uuid technician_id "Ref logica a USERS"
+        varchar title "Titulo do chamado"
+        varchar description "Descricao do chamado"
+        int priority_id FK "Chave para PRIORITIES"
+        int status_id FK "Chave para TICKET_STATUS"
+        int category_id FK "Chave para CATEGORIES"
+        timestamp created_at "Data de abertura"
+        timestamp updated_at "Data da ultima atualizacao"
+    }
+    PRIORITIES {
+        serial id PK
+        varchar priority UK "LOW, MEDIUM, HIGH, CRITICAL"
+    }
+    TICKET_STATUS {
+        serial id PK
+        varchar status UK "OPEN, IN_PROGRESS, WAITING, RESOLVED, CLOSED"
+    }
+    CATEGORIES {
+        serial id PK
+        varchar category UK "HARDWARE, SOFTWARE, NETWORK"
+    }
+
+    NOTIFICATIONS {
+        uuid id PK
+        uuid ticket_id "UUID do ticket"
+        uuid customer_id "UUID do cliente"
+        uuid technician_id "UUID do tecnico"
+        varchar title "Titulo do ticket"
+        varchar description "Descricao do ticket"
+        varchar message "Mensagem do evento"
+        varchar priority "Snapshot da prioridade"
+        varchar status "Snapshot do status"
+        varchar category "Snapshot da categoria"
+        timestamp created_at "Data do evento"
+    }
 ```
 
 ---
