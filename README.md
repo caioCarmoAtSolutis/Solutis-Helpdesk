@@ -45,12 +45,6 @@ Solutis Helpdesk application challenge
 
 O **Solutis Helpdesk** é uma solução corporativa distribuída projetada para modernizar e orquestrar o ciclo completo de atendimento técnico e suporte em ambientes corporativos. O sistema atende à demanda de abertura, triagem, categorização, priorização, atribuição e resolução de incidentes e solicitações de serviços de TI.
 
-### Atores e Perfis de Acesso
-
-- **Cliente (`CLIENT`):** Usuário final requisitante. Pode registrar novos chamados, acompanhar o progresso das suas solicitações e consultar o histórico de notificações geradas.
-- **Técnico (`TECHNICIAN`):** Especialista de suporte. Responsável por assumir ou receber a atribuição de chamados, atualizar os status operacionais (em andamento, aguardando insumos, resolvido) e conduzir a solução técnica.
-- **Administrador (`ADMIN`):** Gestor do sistema. Possui visibilidade global dos chamados, gerencia cadastros de usuários, ativa/desativa contas e acompanha métricas operacionais.
-
 ### Ciclo de Vida do Chamado (Ticket)
 
 1. **Abertura:** O chamado é criado com status obrigatório inicial `OPEN`, associado a um cliente válido e ativo, com título, descrição, categoria (`HARDWARE`, `SOFTWARE` ou `NETWORK`) e prioridade (`LOW`, `MEDIUM`, `HIGH`, `CRITICAL`).
